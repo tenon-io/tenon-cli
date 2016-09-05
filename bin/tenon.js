@@ -37,7 +37,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
   // Load the config file for options if it exists
   var configuration = {};
-  console.log();
   if (program.commands[0].config) {
     try {
       configuration = _fs2.default.readFileSync(program.commands[0].config, 'utf8');
@@ -71,10 +70,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
   var options = {};
   // Generate the array of options for Tenon
-  Object.entries(tenonOptions).forEach(function (option) {
-    if (allOptions[option[0]]) {
-      var mappedIndex = option[1];
-      options[mappedIndex] = allOptions[option[0]];
+  Object.keys(tenonOptions).forEach(function (key) {
+    var value = tenonOptions[key];
+    if (allOptions[key]) {
+      var mappedIndex = value;
+      options[mappedIndex] = allOptions[key];
     }
   });
 
@@ -114,6 +114,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     console.error('No input HTML specified for analysis');
     process.exit(1);
   }
+
   // Initialize the Tenon API object
   var tenonApi = new _tenonNode2.default({
     key: allOptions.key,
@@ -190,7 +191,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
         parseFormat(result);
       } else {
         console.log('Writing results to console...');
-        process.stdout.write('${JSON.stringify(result, null, \'\t\')}\n');
+        process.stdout.write(JSON.stringify(result, null, '\t'));
+        process.stdout.write('\n');
       }
     }
   });

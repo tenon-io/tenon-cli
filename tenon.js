@@ -22,7 +22,6 @@ getStdin().then(pipedHTML => {
 
   // Load the config file for options if it exists
   let configuration = {};
-  console.log();
   if (program.commands[0].config) {
     try {
       configuration = fs.readFileSync(program.commands[0].config, 'utf8');
@@ -59,10 +58,11 @@ getStdin().then(pipedHTML => {
 
   const options = {};
   // Generate the array of options for Tenon
-  Object.entries(tenonOptions).forEach((option) => {
-    if (allOptions[option[0]]) {
-      const mappedIndex = option[1];
-      options[mappedIndex] = allOptions[option[0]];
+  Object.keys(tenonOptions).forEach((key) => {
+    const value = tenonOptions[key]
+    if (allOptions[key]) {
+      const mappedIndex = value;
+      options[mappedIndex] = allOptions[key];
     }
   });
 
@@ -102,6 +102,7 @@ getStdin().then(pipedHTML => {
     console.error('No input HTML specified for analysis');
     process.exit(1);
   }
+
   // Initialize the Tenon API object
   const tenonApi = new tenonNode({
     key: allOptions.key,
@@ -179,8 +180,10 @@ getStdin().then(pipedHTML => {
         parseFormat(result);
       } else {
         console.log('Writing results to console...');
-        process.stdout.write('${JSON.stringify(result, null, \'\t\')}\n');
+        process.stdout.write(JSON.stringify(result, null, '\t'));
+        process.stdout.write('\n');
       }
     }
   });
 });
+
