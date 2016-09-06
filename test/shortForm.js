@@ -16,7 +16,6 @@ describe('Valid short form options', function() {
       '-f', 'html',
       '-w', '3000',
       '-l', 'AAA',
-      '--certainty=60',
       '-I', '20',
       '-p', '20',
       '-s',
@@ -39,7 +38,6 @@ describe('Valid short form options', function() {
     assert.equal(objectWithArgs.format, 'html');
     assert.equal(objectWithArgs.waitFor, 3000);
     assert.equal(objectWithArgs.level, 'AAA');
-    assert.equal(objectWithArgs.certainty, 60);
     assert.equal(objectWithArgs.importance, 20);
     assert.equal(objectWithArgs.priority, 20);
     assert.equal(objectWithArgs.store, true);
