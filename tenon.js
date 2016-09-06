@@ -53,6 +53,10 @@ getStdin().then(pipedHTML => {
     }
   });
 
+  if (process.env.TENON_API_KEY && !allOptions.key) {
+    allOptions.key = process.env.TENON_API_KEY;
+  }
+
   // Options that can be sent to Tenon
   const tenonOptions = {
     waitFor: 'waitFor',

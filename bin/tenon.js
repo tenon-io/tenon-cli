@@ -65,6 +65,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     }
   });
 
+  if (process.env.TENON_API_KEY && !allOptions.key) {
+    allOptions.key = process.env.TENON_API_KEY;
+  }
+
   // Options that can be sent to Tenon
   var tenonOptions = {
     waitFor: 'waitFor',
