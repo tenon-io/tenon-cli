@@ -87,6 +87,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     }
   });
 
+  // Defaults
+  if (!options['format']) {
+    options['format'] = "json";
+  }
+
   // Check and make sure all of the required fields have been entered
   var requiredFields = ['key'];
   requiredFields.forEach(function (field) {

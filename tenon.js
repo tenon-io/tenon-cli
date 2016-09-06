@@ -75,6 +75,11 @@ getStdin().then(pipedHTML => {
     }
   });
 
+  // Defaults
+  if (!options['format']) {
+    options['format'] = "json";
+  }
+
   // Check and make sure all of the required fields have been entered
   const requiredFields = ['key'];
   requiredFields.forEach((field) => {
