@@ -37,7 +37,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
   // Load the config file for options if it exists
   var configuration = {};
-  console.log();
   if (program.commands[0].config) {
     try {
       configuration = _fs2.default.readFileSync(program.commands[0].config, 'utf8');
@@ -71,10 +70,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
   var options = {};
   // Generate the array of options for Tenon
-  Object.entries(tenonOptions).forEach(function (option) {
-    if (allOptions[option[0]]) {
-      var mappedIndex = option[1];
-      options[mappedIndex] = allOptions[option[0]];
+  Object.keys(tenonOptions).forEach(function (key) {
+    var value = tenonOptions[key];
+    if (allOptions[key]) {
+      var mappedIndex = value;
+      options[mappedIndex] = allOptions[key];
     }
   });
 
@@ -114,6 +114,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     console.error('No input HTML specified for analysis');
     process.exit(1);
   }
+
   // Initialize the Tenon API object
   var tenonApi = new _tenonNode2.default({
     key: allOptions.key,
@@ -122,7 +123,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   var writeResultFile = function writeResultFile(result, file) {
     try {
       _fs2.default.writeFileSync(file, result);
-      console.log('Analysis complete, report at ${file}');
+      console.log('Analysis complete, report at ' + file);
     } catch (e) {
       console.error('Failed to write file...');
       console.error(e.message);
@@ -130,11 +131,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     }
   };
 
+  console.log('allOptions', allOptions.format);
+
   var parseFormat = function parseFormat(json) {
     switch (allOptions.format) {
       case 'json':
         // Tenon returns resuls in JSON, so it's already formatted correctly
-        writeResultFile(JSON.stringify(json, null, '\t'), '${allOptions.out}.json');
+        writeResultFile(JSON.stringify(json, null, '\t'), allOptions.out + '.json');
         break;
       case 'csv':
         _tenonReporters2.default.CSV(json, function (err, result) {
@@ -142,7 +145,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             console.error('Failed to parse Tenon response into CSV format');
             console.error(err);
           } else {
-            writeResultFile(result, '${allOptions.out}.csv');
+            writeResultFile(result, allOptions.out + '.csv');
           }
         });
         break;
@@ -152,7 +155,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             console.error('Failed to parse Tenon response into HTML format');
             console.error(err);
           } else {
-            writeResultFile(result, '${allOptions.out}.html');
+            writeResultFile(result, allOptions.out + '.html');
           }
         });
         break;
@@ -162,7 +165,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             console.error('Failed to parse Tenon response into XUnit format');
             console.error(err);
           } else {
-            writeResultFile(result, '${allOptions.out}.xml');
+            writeResultFile(result, allOptions.out + '.xml');
           }
         });
         break;
@@ -190,7 +193,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
         parseFormat(result);
       } else {
         console.log('Writing results to console...');
-        process.stdout.write('${JSON.stringify(result, null, \'\t\')}\n');
+        process.stdout.write(JSON.stringify(result, null, '\t'));
+        process.stdout.write('\n');
       }
     }
   });

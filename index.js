@@ -23,8 +23,8 @@ export const parseCommand = function(passedArguments) {
   )
   .option(
     '-f, --format [format]',
-    'The format of the outputted data',
-    /^(json|html|xunit)$/i,
+    'The format of the outputted data [json, html, xunit, csv]',
+    /^(json|html|xunit|csv)$/i,
     'json'
   ).option(
     '-w, --wait-for [waitFor]',

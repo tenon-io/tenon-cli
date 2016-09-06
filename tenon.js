@@ -22,7 +22,6 @@ getStdin().then(pipedHTML => {
 
   // Load the config file for options if it exists
   let configuration = {};
-  console.log();
   if (program.commands[0].config) {
     try {
       configuration = fs.readFileSync(program.commands[0].config, 'utf8');
@@ -59,10 +58,11 @@ getStdin().then(pipedHTML => {
 
   const options = {};
   // Generate the array of options for Tenon
-  Object.entries(tenonOptions).forEach((option) => {
-    if (allOptions[option[0]]) {
-      const mappedIndex = option[1];
-      options[mappedIndex] = allOptions[option[0]];
+  Object.keys(tenonOptions).forEach((key) => {
+    const value = tenonOptions[key]
+    if (allOptions[key]) {
+      const mappedIndex = value;
+      options[mappedIndex] = allOptions[key];
     }
   });
 
@@ -102,6 +102,7 @@ getStdin().then(pipedHTML => {
     console.error('No input HTML specified for analysis');
     process.exit(1);
   }
+
   // Initialize the Tenon API object
   const tenonApi = new tenonNode({
     key: allOptions.key,
@@ -111,7 +112,7 @@ getStdin().then(pipedHTML => {
   const writeResultFile = (result, file) => {
     try {
       fs.writeFileSync(file, result);
-      console.log('Analysis complete, report at ${file}');
+      console.log(`Analysis complete, report at ${file}`);
     } catch (e) {
       console.error('Failed to write file...');
       console.error(e.message);
@@ -123,7 +124,7 @@ getStdin().then(pipedHTML => {
     switch (allOptions.format) {
       case 'json':
         // Tenon returns resuls in JSON, so it's already formatted correctly
-        writeResultFile(JSON.stringify(json, null, '\t'), '${allOptions.out}.json');
+        writeResultFile(JSON.stringify(json, null, '\t'), `${allOptions.out}.json`);
         break;
       case 'csv':
         reporters.CSV(json, (err, result) => {
@@ -131,7 +132,7 @@ getStdin().then(pipedHTML => {
             console.error('Failed to parse Tenon response into CSV format');
             console.error(err);
           } else {
-            writeResultFile(result, '${allOptions.out}.csv');
+            writeResultFile(result, `${allOptions.out}.csv`);
           }
         });
         break;
@@ -141,7 +142,7 @@ getStdin().then(pipedHTML => {
             console.error('Failed to parse Tenon response into HTML format');
             console.error(err);
           } else {
-            writeResultFile(result, '${allOptions.out}.html');
+            writeResultFile(result, `${allOptions.out}.html`);
           }
         });
         break;
@@ -151,7 +152,7 @@ getStdin().then(pipedHTML => {
             console.error('Failed to parse Tenon response into XUnit format');
             console.error(err);
           } else {
-            writeResultFile(result, '${allOptions.out}.xml');
+            writeResultFile(result, `${allOptions.out}.xml`);
           }
         });
         break;
@@ -179,8 +180,10 @@ getStdin().then(pipedHTML => {
         parseFormat(result);
       } else {
         console.log('Writing results to console...');
-        process.stdout.write('${JSON.stringify(result, null, \'\t\')}\n');
+        process.stdout.write(JSON.stringify(result, null, '\t'));
+        process.stdout.write('\n');
       }
     }
   });
 });
+
