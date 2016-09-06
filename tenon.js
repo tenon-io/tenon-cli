@@ -112,7 +112,7 @@ getStdin().then(pipedHTML => {
   const writeResultFile = (result, file) => {
     try {
       fs.writeFileSync(file, result);
-      console.log('Analysis complete, report at ${file}');
+      console.log(`Analysis complete, report at ${file}`);
     } catch (e) {
       console.error('Failed to write file...');
       console.error(e.message);
@@ -124,7 +124,7 @@ getStdin().then(pipedHTML => {
     switch (allOptions.format) {
       case 'json':
         // Tenon returns resuls in JSON, so it's already formatted correctly
-        writeResultFile(JSON.stringify(json, null, '\t'), '${allOptions.out}.json');
+        writeResultFile(JSON.stringify(json, null, '\t'), `${allOptions.out}.json`);
         break;
       case 'csv':
         reporters.CSV(json, (err, result) => {
@@ -132,7 +132,7 @@ getStdin().then(pipedHTML => {
             console.error('Failed to parse Tenon response into CSV format');
             console.error(err);
           } else {
-            writeResultFile(result, '${allOptions.out}.csv');
+            writeResultFile(result, `${allOptions.out}.csv`);
           }
         });
         break;
@@ -142,7 +142,7 @@ getStdin().then(pipedHTML => {
             console.error('Failed to parse Tenon response into HTML format');
             console.error(err);
           } else {
-            writeResultFile(result, '${allOptions.out}.html');
+            writeResultFile(result, `${allOptions.out}.html`);
           }
         });
         break;
@@ -152,7 +152,7 @@ getStdin().then(pipedHTML => {
             console.error('Failed to parse Tenon response into XUnit format');
             console.error(err);
           } else {
-            writeResultFile(result, '${allOptions.out}.xml');
+            writeResultFile(result, `${allOptions.out}.xml`);
           }
         });
         break;

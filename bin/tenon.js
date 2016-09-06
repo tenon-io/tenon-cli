@@ -123,7 +123,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   var writeResultFile = function writeResultFile(result, file) {
     try {
       _fs2.default.writeFileSync(file, result);
-      console.log('Analysis complete, report at ${file}');
+      console.log('Analysis complete, report at ' + file);
     } catch (e) {
       console.error('Failed to write file...');
       console.error(e.message);
@@ -131,11 +131,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     }
   };
 
+  console.log('allOptions', allOptions.format);
+
   var parseFormat = function parseFormat(json) {
     switch (allOptions.format) {
       case 'json':
         // Tenon returns resuls in JSON, so it's already formatted correctly
-        writeResultFile(JSON.stringify(json, null, '\t'), '${allOptions.out}.json');
+        writeResultFile(JSON.stringify(json, null, '\t'), allOptions.out + '.json');
         break;
       case 'csv':
         _tenonReporters2.default.CSV(json, function (err, result) {
@@ -143,7 +145,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             console.error('Failed to parse Tenon response into CSV format');
             console.error(err);
           } else {
-            writeResultFile(result, '${allOptions.out}.csv');
+            writeResultFile(result, allOptions.out + '.csv');
           }
         });
         break;
@@ -153,7 +155,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             console.error('Failed to parse Tenon response into HTML format');
             console.error(err);
           } else {
-            writeResultFile(result, '${allOptions.out}.html');
+            writeResultFile(result, allOptions.out + '.html');
           }
         });
         break;
@@ -163,7 +165,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             console.error('Failed to parse Tenon response into XUnit format');
             console.error(err);
           } else {
-            writeResultFile(result, '${allOptions.out}.xml');
+            writeResultFile(result, allOptions.out + '.xml');
           }
         });
         break;
