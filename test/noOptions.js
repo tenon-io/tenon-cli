@@ -12,6 +12,5 @@ describe('No options', function() {
     const program = parseCommand(args);
     // Values are stored here based on Commander.js
     const objectWithArgs = program.commands[0].parent;
-    assert.equal(objectWithArgs.endpoint, 'https://tenon.io/api/');
   });
 });
