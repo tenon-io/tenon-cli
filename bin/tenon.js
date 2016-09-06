@@ -60,7 +60,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     importance: 'importance',
     priority: 'priority',
     store: 'store',
-    docID: 'docID',
+    docId: 'docID',
     fragment: 'fragment',
     projectId: 'projectID',
     userAgent: 'UAString',
@@ -73,14 +73,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   Object.keys(tenonOptions).forEach(function (key) {
     var value = tenonOptions[key];
     if (allOptions[key]) {
-      var mappedIndex = value;
-      options[mappedIndex] = allOptions[key];
+      if (key === 'store' || key === 'fragment') {
+        allOptions[key] = +allOptions[key];
+      }
+      options[value] = allOptions[key];
     }
   });
 
   // Delete all of the options that haven't been set
   Object.keys(options).forEach(function (key) {
-    if (!options[key]) {
+    if (options[key] === undefined) {
       delete options[key];
     }
   });
@@ -131,46 +133,52 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     }
   };
 
-  console.log('allOptions', allOptions.format);
-
   var parseFormat = function parseFormat(json) {
     switch (allOptions.format) {
       case 'json':
         // Tenon returns resuls in JSON, so it's already formatted correctly
-        writeResultFile(JSON.stringify(json, null, '\t'), allOptions.out + '.json');
-        break;
+        return new Promise(function (resolve, reject) {
+          resolve(JSON.stringify(json, null, '\t'));
+        });
       case 'csv':
-        _tenonReporters2.default.CSV(json, function (err, result) {
-          if (err) {
-            console.error('Failed to parse Tenon response into CSV format');
-            console.error(err);
-          } else {
-            writeResultFile(result, allOptions.out + '.csv');
-          }
+        return new Promise(function (resolve) {
+          _tenonReporters2.default.CSV(json, function (err, result) {
+            if (err) {
+              console.error('Failed to parse Tenon response into CSV format');
+              console.error(err);
+              process.exit(1);
+            } else {
+              resolve(result);
+            }
+          });
         });
-        break;
       case 'html':
-        _tenonReporters2.default.HTML(json, function (err, result) {
-          if (err) {
-            console.error('Failed to parse Tenon response into HTML format');
-            console.error(err);
-          } else {
-            writeResultFile(result, allOptions.out + '.html');
-          }
+        return new Promise(function (resolve) {
+          _tenonReporters2.default.HTML(json, function (err, result) {
+            if (err) {
+              console.error('Failed to parse Tenon response into HTML format');
+              console.error(err);
+              process.exit(1);
+            } else {
+              resolve(result);
+            }
+          });
         });
-        break;
       case 'xunit':
-        _tenonReporters2.default.XUnit(json, function (err, result) {
-          if (err) {
-            console.error('Failed to parse Tenon response into XUnit format');
-            console.error(err);
-          } else {
-            writeResultFile(result, allOptions.out + '.xml');
-          }
+        return new Promise(function (resolve) {
+          _tenonReporters2.default.XUnit(json, function (err, result) {
+            if (err) {
+              console.error('Failed to parse Tenon response into XUnit format');
+              console.error(err);
+              process.exit(1);
+            } else {
+              resolve(result);
+            }
+          });
         });
-        break;
       default:
         console.error('Error occured, format not found');
+        process.exit(1);
         break;
     }
   };
@@ -187,15 +195,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
         console.error(JSON.stringify(result, null, '\t'));
         process.exit(1);
       }
+
       console.log('Tenon analysis completed.');
-      if (allOptions.out) {
-        console.log('Writing results to file...');
-        parseFormat(result);
-      } else {
-        console.log('Writing results to console...');
-        process.stdout.write(JSON.stringify(result, null, '\t'));
-        process.stdout.write('\n');
-      }
+      parseFormat(result).then(function (formattedResult) {
+        if (allOptions.out) {
+          console.log('Writing results to file...');
+          try {
+            writeResultFile(formattedResult, allOptions.out);
+          } catch (e) {
+            console.error('Failed to write result to file...');
+            console.error(e.message);
+            process.exit(1);
+          }
+        } else {
+          console.log('Writing results to console...');
+          process.stdout.write(formattedResult);
+        }
+      });
     }
   });
 });
