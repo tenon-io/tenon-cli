@@ -22,7 +22,7 @@ Tenon CLI requires [Node.js](https://nodejs.org/) v4+ to run.
 Install the dependencies and devDependencies and start the server.
 
 ```sh
-$ cd tenode-cli
+$ cd tenode
 $ npm install -g
 $ tenon --key=XXXXXXXX --config=config.json https://example.com
 ```
