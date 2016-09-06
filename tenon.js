@@ -48,7 +48,7 @@ getStdin().then(pipedHTML => {
     importance: 'importance',
     priority: 'priority',
     store: 'store',
-    docID: 'docID',
+    docId: 'docID',
     fragment: 'fragment',
     projectId: 'projectID',
     userAgent: 'UAString',
@@ -59,16 +59,18 @@ getStdin().then(pipedHTML => {
   const options = {};
   // Generate the array of options for Tenon
   Object.keys(tenonOptions).forEach((key) => {
-    const value = tenonOptions[key]
+    const value = tenonOptions[key];
     if (allOptions[key]) {
-      const mappedIndex = value;
-      options[mappedIndex] = allOptions[key];
+      if (key === 'store' || key === 'fragment') {
+        allOptions[key] = +allOptions[key];
+      }
+      options[value] = allOptions[key];
     }
   });
 
   // Delete all of the options that haven't been set
   Object.keys(options).forEach((key) => {
-    if (!options[key]) {
+    if (options[key] === undefined) {
       delete options[key];
     }
   });
@@ -124,40 +126,48 @@ getStdin().then(pipedHTML => {
     switch (allOptions.format) {
       case 'json':
         // Tenon returns resuls in JSON, so it's already formatted correctly
-        writeResultFile(JSON.stringify(json, null, '\t'), `${allOptions.out}.json`);
-        break;
+        return new Promise((resolve, reject) => {
+          resolve(JSON.stringify(json, null, '\t'));
+        });
       case 'csv':
-        reporters.CSV(json, (err, result) => {
-          if (err) {
-            console.error('Failed to parse Tenon response into CSV format');
-            console.error(err);
-          } else {
-            writeResultFile(result, `${allOptions.out}.csv`);
-          }
+        return new Promise((resolve) => {
+          reporters.CSV(json, (err, result) => {
+            if (err) {
+              console.error('Failed to parse Tenon response into CSV format');
+              console.error(err);
+              process.exit(1);
+            } else {
+              resolve(result);
+            }
+          });
         });
-        break;
       case 'html':
-        reporters.HTML(json, (err, result) => {
-          if (err) {
-            console.error('Failed to parse Tenon response into HTML format');
-            console.error(err);
-          } else {
-            writeResultFile(result, `${allOptions.out}.html`);
-          }
+        return new Promise((resolve) => {
+          reporters.HTML(json, (err, result) => {
+            if (err) {
+              console.error('Failed to parse Tenon response into HTML format');
+              console.error(err);
+              process.exit(1);
+            } else {
+              resolve(result);
+            }
+          });
         });
-        break;
       case 'xunit':
-        reporters.XUnit(json, (err, result) => {
-          if (err) {
-            console.error('Failed to parse Tenon response into XUnit format');
-            console.error(err);
-          } else {
-            writeResultFile(result, `${allOptions.out}.xml`);
-          }
+        return new Promise((resolve) => {
+          reporters.XUnit(json, (err, result) => {
+            if (err) {
+              console.error('Failed to parse Tenon response into XUnit format');
+              console.error(err);
+              process.exit(1);
+            } else {
+              resolve(result);
+            }
+          });
         });
-        break;
       default:
         console.error('Error occured, format not found');
+        process.exit(1);
         break;
     }
   };
@@ -174,15 +184,23 @@ getStdin().then(pipedHTML => {
         console.error(JSON.stringify(result, null, '\t'));
         process.exit(1);
       }
+
       console.log('Tenon analysis completed.');
-      if (allOptions.out) {
-        console.log('Writing results to file...');
-        parseFormat(result);
-      } else {
-        console.log('Writing results to console...');
-        process.stdout.write(JSON.stringify(result, null, '\t'));
-        process.stdout.write('\n');
-      }
+      parseFormat(result).then((formattedResult) => {
+        if (allOptions.out) {
+          console.log('Writing results to file...');
+          try {
+            writeResultFile(formattedResult, allOptions.out);
+          } catch (e) {
+            console.error('Failed to write result to file...');
+            console.error(e.message);
+            process.exit(1);
+          }
+        } else {
+          console.log('Writing results to console...');
+          process.stdout.write(formattedResult);
+        }
+      });
     }
   });
 });
