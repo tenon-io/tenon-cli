@@ -17,12 +17,13 @@ export const parseCommand = function(passedArguments) {
     '-o, --out <out>',
     'Output file'
   ).option(
-    '-C, --config [config]',
+    '--config [config]',
     'Tenode configuration file'
   )
   .option(
     '-f, --format [format]',
-    'The format of the outputted data'
+    'The format of the outputted data [json, html, xunit, csv]',
+    /^(json|html|xunit|csv)$/i,
   ).option(
     '-w, --wait-for [waitFor]',
     'Delay, in milliseconds, for the Tenode tests',
@@ -54,10 +55,8 @@ export const parseCommand = function(passedArguments) {
     '-d, --doc-id [docID]',
     'A string of text used to identify the page being tested'
   ).option(
-    '-F, --fragment [fragment]',
+    '-F, --fragment',
     'This parameter allows you to identify the source string as only a fragment of a page',
-    /^(0|1)$/i,
-    0
   ).option(
     '-P, --project-id [projectID]',
     'A string you can supply to identify the tested document as part of a specific system'
