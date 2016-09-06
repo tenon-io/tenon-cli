@@ -1,0 +1,5 @@
+{
+  "out": "changeup.html",
+  "format": "html",
+  "waitFor": 1000
+}
