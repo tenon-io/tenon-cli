@@ -2,19 +2,6 @@
 
 This CLI was made to interact with the Tenon.io API. It utilized Node and Commander,js to create a UNIX-style CLI.
 
-### What is uses
-
-This CLI uses a number of open source projects to work properly:
-
-* [CommanderJS] - HTML enhanced for web apps!
-* [NPM] - awesome web-based text editor
-* [tenon-node] - Markdown parser done right. Fast and easy to extend.
-* [tenon-reporters] - great UI boilerplate for modern web apps
-* [node.js] - evented I/O for the backend
-
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
-
 ### Installation
 
 Tenon CLI requires [Node.js](https://nodejs.org/) v4+ to run.
@@ -35,7 +22,7 @@ To develop this CLI further, modify the following files:
 
 ```index.js``` - This is where the actual CommanderJS parser and all of the CLI specific data exists.
 
-NOTE: ANY CHANGES MADE TO OPTIONS IN ```INDEX.JS``` MUST BE REFLECTED IN ```testIndex.js``` BECAUSE THEIR ENVIRONMENTS ARE SLIGHTLY DIFFERENT BUT THE TEST FILE MUST ACCURATELY MOCK THE PRODUCTION INDEX FILE IN ORDER FOR TESTING TO BE EFFECTIVE.
+NOTE: ANY CHANGES MADE TO OPTIONS IN ```index.js``` MUST BE REFLECTED IN ```testIndex.js``` BECAUSE THEIR ENVIRONMENTS ARE SLIGHTLY DIFFERENT BUT THE TEST FILE MUST ACCURATELY MOCK THE PRODUCTION INDEX FILE IN ORDER FOR TESTING TO BE EFFECTIVE.
 
 Then run
 ```sh
