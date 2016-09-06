@@ -87,10 +87,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     }
   });
 
-  // Defaults
-  if (!options['format']) {
-    options['format'] = "json";
-  }
+  // Defaults, can't do this in index.js because of the config.js file
+  // There is no way to differenciate between default and user entered which is the problem
+  var defaults = {
+    "endpoint": 'https://tenon.io/api/',
+    "format": 'json'
+  };
+
+  Object.keys(defaults).forEach(function (key) {
+    if (!allOptions[key]) {
+      allOptions[key] = defaults[key];
+    }
+  });
 
   // Check and make sure all of the required fields have been entered
   var requiredFields = ['key'];

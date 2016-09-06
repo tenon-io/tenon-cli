@@ -8,8 +8,7 @@ export const parseCommand = function(passedArguments) {
     'Tenode API key'
   ).option(
     '-e, --endpoint <endpoint>',
-    'Tenon API endpoint',
-    'https://tenon.io/api/'
+    'Tenon API endpoint'
   ).option(
     '-i, --in [in]',
     'Input file'
