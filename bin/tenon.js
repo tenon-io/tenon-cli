@@ -52,6 +52,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   // Merge the two sources of options
   var allOptions = Object.assign({}, configuration, program.commands[0]);
 
+  // Defaults, can't do this in index.js because of the config.js file
+  // There is no way to differenciate between default and user entered which is the problem
+  var defaults = {
+    "endpoint": 'https://tenon.io/api/',
+    "format": 'json'
+  };
+
+  Object.keys(defaults).forEach(function (key) {
+    if (!allOptions[key]) {
+      allOptions[key] = defaults[key];
+    }
+  });
+
   // Options that can be sent to Tenon
   var tenonOptions = {
     waitFor: 'waitFor',
@@ -84,19 +97,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   Object.keys(options).forEach(function (key) {
     if (options[key] === undefined) {
       delete options[key];
-    }
-  });
-
-  // Defaults, can't do this in index.js because of the config.js file
-  // There is no way to differenciate between default and user entered which is the problem
-  var defaults = {
-    "endpoint": 'https://tenon.io/api/',
-    "format": 'json'
-  };
-
-  Object.keys(defaults).forEach(function (key) {
-    if (!allOptions[key]) {
-      allOptions[key] = defaults[key];
     }
   });
 

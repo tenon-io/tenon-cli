@@ -40,6 +40,19 @@ getStdin().then(pipedHTML => {
     program.commands[0]
   );
 
+  // Defaults, can't do this in index.js because of the config.js file
+  // There is no way to differenciate between default and user entered which is the problem
+  const defaults = {
+    "endpoint" : 'https://tenon.io/api/',
+    "format" : 'json'
+  };
+
+  Object.keys(defaults).forEach((key) => {
+    if (!allOptions[key]) {
+      allOptions[key] = defaults[key];
+    }
+  });
+
   // Options that can be sent to Tenon
   const tenonOptions = {
     waitFor: 'waitFor',
@@ -72,19 +85,6 @@ getStdin().then(pipedHTML => {
   Object.keys(options).forEach((key) => {
     if (options[key] === undefined) {
       delete options[key];
-    }
-  });
-
-  // Defaults, can't do this in index.js because of the config.js file
-  // There is no way to differenciate between default and user entered which is the problem
-  const defaults = {
-    "endpoint" : 'https://tenon.io/api/',
-    "format" : 'json'
-  };
-
-  Object.keys(defaults).forEach((key) => {
-    if (!allOptions[key]) {
-      allOptions[key] = defaults[key];
     }
   });
 
