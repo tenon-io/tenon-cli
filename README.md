@@ -1,7 +1,9 @@
-[![Build Status](https://travis-ci.com/tenon-io/tenon-cli.svg?token=8zanmK4gbkW8sxVWxRJB&branch=travisci)](https://travis-ci.com/tenon-io/tenon-cli)
+[![Build Status](https://travis-ci.org/tenon-io/tenon-cli.svg?branch=master)](https://travis-ci.org/tenon-io/tenon-cli) [![Code Climate](https://codeclimate.com/github/tenon-io/tenon-cli/badges/gpa.svg)](https://codeclimate.com/github/tenon-io/tenon-cli)
+
+[![NPM](https://nodei.co/npm/tenon-cli.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/tenon-cli/)
 # Tenon CLI
 
-This CLI was made to interact with the Tenon.io API. It utilized Node and Commander,js to create a UNIX-style CLI.
+This CLI was made to interact with the Tenon.io API. It utilizes Node and Commander,js to create a UNIX-style CLI.
 
 ### Installation
 
@@ -10,8 +12,7 @@ Tenon CLI requires [Node.js](https://nodejs.org/) v4+ to run.
 Install the dependencies and devDependencies and start the server.
 
 ```sh
-$ cd tenode
-$ npm install -g
+$ npm install tenon-cli -g
 $ tenon --key=XXXXXXXX --config=config.json https://example.com
 ```
 
@@ -19,11 +20,11 @@ $ tenon --key=XXXXXXXX --config=config.json https://example.com
 
 To develop this CLI further, modify the following files:
 
-```tenon.js``` - This is where the Tenon API is called and where the options included in these calls and used to manage the return data exists.
+`tenon.js` - This is where the Tenon API is called and where the options included in these calls and used to manage the return data exists.
 
-```index.js``` - This is where the actual CommanderJS parser and all of the CLI specific data exists.
+`index.js` - This is where the actual CommanderJS parser and all of the CLI specific data exists.
 
-NOTE: ANY CHANGES MADE TO OPTIONS IN ```index.js``` MUST BE REFLECTED IN ```testIndex.js``` BECAUSE THEIR ENVIRONMENTS ARE SLIGHTLY DIFFERENT BUT THE TEST FILE MUST ACCURATELY MOCK THE PRODUCTION INDEX FILE IN ORDER FOR TESTING TO BE EFFECTIVE.
+*NOTE: ANY CHANGES MADE TO OPTIONS IN `index.js` MUST BE REFLECTED IN `testIndex.js` BECAUSE THEIR ENVIRONMENTS ARE SLIGHTLY DIFFERENT BUT THE TEST FILE MUST ACCURATELY MOCK THE PRODUCTION INDEX FILE IN ORDER FOR TESTING TO BE EFFECTIVE.*
 
 Then run
 ```sh
@@ -46,10 +47,4 @@ $ npm run test
 ```
 This will run the tests using mocha.
 
-To write new tests, just put them in the ```test/``` folder and they will automatically be tested with the above command. Each test that utilizes/mocks the CLI arguments and their conversion to options must import/require ```testIndex.js```.
-
-   [CommanderJS]: <https://github.com/tj/commander.js/>
-   [NPM]: <http://npmjs.com>
-   [tenon-node]: <https://github.com/poorgeek/tenon-node>
-   [tenon-reporters]: <https://github.com/tjkix2006/tenon-reporters>
-   [node.js]: <http://nodejs.org>
+To write new tests, just put them in the `test/` folder and they will automatically be tested with the above command. Each test that utilizes/mocks the CLI arguments and their conversion to options must import/require `testIndex.js`.
