@@ -1,19 +1,18 @@
 {
   "name": "@tenon-io/tenon-cli",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "A CLI for the Node wrapper of the Tenode.io API.",
   "engines": {
     "node": ">=4"
   },
   "main": "./bin",
   "scripts": {
-    "compile": "./node_modules/.bin/babel --presets es2015,stage-0 -d bin/ tenon.js index.js",
+    "compile": "babel --presets es2015,stage-0 -d bin/ tenon.js index.js",
     "test": "mocha --compilers js:babel-core/register test/",
     "lint": "eslint tenon.js"
   },
   "directories": {
-    "test": "./test",
-    "bin": "./bin"
+    "test": "test"
   },
   "dependencies": {
     "commander": "^2.9.0",
@@ -22,7 +21,12 @@
     "tenon-reporters": "~0.1.1"
   },
   "license": "ISC",
-  "author": "",
+  "author": "Tenon <deployments@tenon.io>",
+  "contributors": [
+    "Nater Kane <nater@naterkane.com> https://github.com/naterkane",
+    "Marcel https://github.com/ortutay",
+    "tjkix2006 https://github.com/tjkix2006"
+  ],
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
@@ -54,5 +58,13 @@
     "tenon-api",
     "cli",
     "testing"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tenon-io/tenon-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tenon-io/tenon-cli/issues"
+  },
+  "homepage": "https://github.com/tenon-io/tenon-cli#readme"
 }
