@@ -31,7 +31,6 @@ deploy:
   api_key:
     secure: jmpPLpcI7VLXqGF1UasYYSwnmgJ6M+ocEhVLNPIfu5bsS7/sFKRlEvkwe8INzkrq3UWeeCY41fVMy4/TJ9H6eIZazlTG+2n4ZaNRTxTzJkHu0SqTvY9q5ldzEHNq94F2WnJePLkVf6Wj1ClZU6BdU8YrfLdArmKeEVHgbxmVyax7UFexoi2ZIJNMWJ54m9dDVY12f6qFHZdEIw8DFSZNxSkUocwsJ3rH1BmeaMv2kTgKiOjD2LcMyI08OAOpKZxT/sim5L5mXTZ9tSTy8a9Snob78cJjbuu4hw6it42LvCnWpdNR/H7BUDlAn7cW6Y1+GBMtd9rtmHaa0/TKQZ0obrSLln29fWuv0jkRqLojI7FNFOz/+7dwfPP/xdE64GsiO8BjfiRYPOim8T3qBGPj8i+JeFbVkMq0amjKS5/axMPVDMIDdLntOA3HOpsltr9e0yObwCbu+kaDsLDd+/uZeOD4d9PDZwu5wT0GcAbGN925qA10u5qDZNTTyLm+LPVpr9CNxbRxnVTKbPblS1GF4Wk1wkezBVXeGzLEBKq0NP4I7X34O5qR/vu3RLm1BpQ48hi7CtpamdkG7561ysdQ5g+Cml47v6NGQuCGPS6WEcsFmS+7p1/8HmYEf12sFR0Zin0A5+v0jsSv0yoUzzjfa5WzV8tKSsSsQSsPxeHNHn8=
   on:
-    tags: true
     branch: master
     repo: tenon-io/tenon-cli
 notifications:
