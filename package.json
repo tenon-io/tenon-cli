@@ -19,7 +19,7 @@
     "commander": "^2.9.0",
     "get-stdin": "^5.0.1",
     "tenon-node": "^0.4.0",
-    "tenon-reporters": "git+https://github.com/tjkix2006/tenon-reporters.git"
+    "tenon-reporters": "~0.1.1"
   },
   "license": "ISC",
   "author": "",

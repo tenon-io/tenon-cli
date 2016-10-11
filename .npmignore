@@ -5,3 +5,5 @@ test
 .babelrc
 testIndex.js
 .eslintrc.js
+tenon.js
+index.js

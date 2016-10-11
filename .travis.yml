@@ -19,18 +19,24 @@ before_script:
   - npm run compile
 script:
   - npm test
+  - nvm use 4
+  - npm test
+  - nvm install 5
+  - npm test
 after_success:
   - git config credential.helper "store --file=.git/credentials"
   - echo "https://${GITHUB_TOKEN}:@github.com" > .git/credentials
   - export CURR_VER=`cat package.json | grep version | tr -s " " ":" | cut -d "\"" -f4`
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./scripts/publish-docker.sh; fi'
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./scripts/publish-release.sh; fi'
 deploy:
+  skip_cleanup: true
   provider: npm
   email: nater@naterkane.com
   api_key:
     secure: mNB2sNkUBK7IW/XyMEw91w0vf0z2iLyUvH4iSz7rmJJbpEMSg2QOzc2hH3UbwYjSE4xG1jwZ/c41lmH09pq4r1eciFOh2GzbzvZkzBhORF2gERoH0K/ibrsqRhlgnXNQvnbfXLzO+bK/Tw9TKlb64jGR325oGljURoyMhyKKnhF03abqqQKzs4+0vTfOkyXCxMaVIJKizVKGfBP7bkcefr0jFmPYJ91cRrv3gFuskl+DpHks3rowaOBioAQSLmoG7OVE07Bi0E+Dx5F+O1Vt3mP7184eMcgpfB27oizZTWLniG3laU+FFCRxvpbenTZHUXt734VGJHsNee52xmAsIRnM3PLNJvk1sKGEI8xofD33+MKIg5M58SgHEaHzYIb3Q7h3Ep7UbrRRgAzAvobQCAkaXdIfYteT4H4BoyUp0hJyD0mDJe0dcGIw9srf9o5ettofMJqWQSPAdhP6VC7uiFrN4og5zCzBoRTFu8MdZpyyy4Gl0gcGOEMdth9WjVyj0OEJCLVfz55unYt369VwnQ1HRwB656G0uhNZz8nRUN9psib+i88W1BRFI6JmAWmU/2sVM78oEiV+vFnWA7LUr66fDkH6qh1LvuCN0IQGaGzw2KeY+CYDsgWCpEcD6kvKmqIPj9aZhe3cB/cLT6vaamVkMjg7dCDbFzcvPnfgIQc=
   on:
     tags: true
+    branch: travisci
     repo: tenon-io/tenon-cli
 notifications:
   slack:
