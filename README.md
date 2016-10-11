@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/tenon-io/tenon-cli.svg?token=8zanmK4gbkW8sxVWxRJB&branch=travisci)](https://travis-ci.com/tenon-io/tenon-cli)
 # Tenon CLI
 
 This CLI was made to interact with the Tenon.io API. It utilized Node and Commander,js to create a UNIX-style CLI.
