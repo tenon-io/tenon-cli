@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # Tag the current commit
-export REPO_TAG=$CURR_VER-$TRAVIS_BUILD_NUMBER
+export REPO_TAG=$CURR_VER #-$TRAVIS_BUILD_NUMBER
 export GITHUB_USER=tenon-io
-export GITHUB_REPO=tenon-api
+export GITHUB_REPO=tenon-cli
 git tag $REPO_TAG $TRAVIS_COMMIT -m "Tagging $GITHUB_USER/$GITHUB_REPO at $REPO_TAG"
 git push --tags
 sleep 3 # this is to make sure the tag is created properly as there is a slight delay
@@ -22,13 +22,13 @@ tar xvjf linux-amd64-github-release.tar.bz2
 bin/linux/amd64/github-release release \
     --user $GITHUB_USER \
     --repo $GITHUB_REPO \
-    --tag $REPO_TAG\
-    --name "$GITHUB_REPO-$REPO_TAG" \
+    --tag "${GITHUB_REPO}-${REPO_TAG}"\
+    --name "${GITHUB_REPO}-${REPO_TAG}" \
 
 # Publish the tar file to the repository
 bin/linux/amd64/github-release upload \
     --user $GITHUB_USER \
     --repo $GITHUB_REPO \
-    --tag $REPO_TAG\
-    --name "$GITHUB_REPO-$REPO_TAG.tar.gz" \
+    --tag "${GITHUB_REPO}-${REPO_TAG}"\
+    --name "${GITHUB_REPO}-${REPO_TAG}.tar.gz" \
     --file /tmp/$GITHUB_REPO-$REPO_TAG.tar.gz
