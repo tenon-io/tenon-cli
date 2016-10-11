@@ -1,6 +1,6 @@
 {
   "name": "@tenon-io/tenon-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI for the Node wrapper of the Tenode.io API.",
   "engines": {
     "node": ">=4"
