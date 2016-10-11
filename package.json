@@ -1,6 +1,6 @@
 {
-  "name": "@tenon-io/tenode-cli",
-  "version": "1.0.0-pre1",
+  "name": "tenode-cli",
+  "version": "1.0.0",
   "description": "A CLI for the Node wrapper of the Tenode.io API.",
   "main": "./bin",
   "scripts": {
@@ -38,17 +38,5 @@
   },
   "bin": {
     "tenon": "bin/tenon.js"
-  },
-  "keywords": [
-    "tenon",
-    "a11y",
-    "accessibility",
-    "508",
-    "Section 508",
-    "WCAG",
-    "tenon.io",
-    "tenon-api",
-    "cli",
-    "testing"
-  ]
+  }
 }
