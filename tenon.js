@@ -44,7 +44,7 @@ getStdin().then(pipedHTML => {
   // There is no way to differenciate between default and user entered which is the problem
   const defaults = {
     endpoint: 'https://tenon.io/api/',
-    format: 'json'
+    format: 'json',
   };
 
   Object.keys(defaults).forEach((key) => {
@@ -221,4 +221,3 @@ getStdin().then(pipedHTML => {
     }
   });
 });
-
