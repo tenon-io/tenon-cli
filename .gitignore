@@ -5,12 +5,14 @@ npm-debug.log
 
 # -*- mode: gitignore; -*-
 node_modules
+bin
 .DS_Store
 
 ### PHP storm ###
 .idea
 .idea/*
 .idea/workspace.xml
+npm-debug.log
 atlassian-ide-plugin.xml
 .settings
 

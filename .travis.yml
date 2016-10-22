@@ -1,10 +1,39 @@
+sudo: required
+dist: trusty
 language: node_js
 node_js:
 - '6.5'
+git:
+  submodules: false
 before_install:
-  - npm update -g npm
-  - npm install -g grunt-cli
+- npm config set spin false
+install:
   - npm install -g bower
-  - bower install
+- npm install
 before_script:
-  - grunt
+- npm run compile
+script:
+- npm test
+- nvm use 4
+- npm test
+- nvm install 5
+- npm test
+- nvm use 6
+- npm i npm -g
+after_success:
+- git config credential.helper "store --file=.git/credentials"
+- echo "https://${GITHUB_TOKEN}:@github.com" > .git/credentials
+- export CURR_VER=`cat package.json | grep version | tr -s " " ":" | cut -d "\"" -f4`
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./scripts/publish-release.sh; fi
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: deployments@tenon.io
+  api_key:
+    secure: jmpPLpcI7VLXqGF1UasYYSwnmgJ6M+ocEhVLNPIfu5bsS7/sFKRlEvkwe8INzkrq3UWeeCY41fVMy4/TJ9H6eIZazlTG+2n4ZaNRTxTzJkHu0SqTvY9q5ldzEHNq94F2WnJePLkVf6Wj1ClZU6BdU8YrfLdArmKeEVHgbxmVyax7UFexoi2ZIJNMWJ54m9dDVY12f6qFHZdEIw8DFSZNxSkUocwsJ3rH1BmeaMv2kTgKiOjD2LcMyI08OAOpKZxT/sim5L5mXTZ9tSTy8a9Snob78cJjbuu4hw6it42LvCnWpdNR/H7BUDlAn7cW6Y1+GBMtd9rtmHaa0/TKQZ0obrSLln29fWuv0jkRqLojI7FNFOz/+7dwfPP/xdE64GsiO8BjfiRYPOim8T3qBGPj8i+JeFbVkMq0amjKS5/axMPVDMIDdLntOA3HOpsltr9e0yObwCbu+kaDsLDd+/uZeOD4d9PDZwu5wT0GcAbGN925qA10u5qDZNTTyLm+LPVpr9CNxbRxnVTKbPblS1GF4Wk1wkezBVXeGzLEBKq0NP4I7X34O5qR/vu3RLm1BpQ48hi7CtpamdkG7561ysdQ5g+Cml47v6NGQuCGPS6WEcsFmS+7p1/8HmYEf12sFR0Zin0A5+v0jsSv0yoUzzjfa5WzV8tKSsSsQSsPxeHNHn8=
+  on:
+    branch: master
+    repo: tenon-io/tenon-cli
+notifications:
+  slack:
+    secure: DzUTAxLJjRBGaKSq9eZTEHRha/Oxt9Agp8fGzhop131y4D9cTrxkj2SXw7AEaqfzB7WYll03kpBkXLPun5tzEEmoPzAQIsDDXGiyMavVs9m8w0nD6uGF579ltf3gSTn84eKOVpGcwn+O90idx9760kDnzpxZr0lLARDn7unir+AbAqgdK3YD7uvJ3a5ynzx8MbdNO7i9Ji80Z2ghjjTMd5YpW6oLyXKeI0GkiQ9kWvfFZjVfFX+BMiaWQ0oQ2WNczTJazBVLJdCi7dIjUSyZ66hQM28tYYjWl+NsPDr0OUqYzJbdteLhEW+3nK6IWEabmNAcp5wKXWTgH49+2Y77XRkCKW5lMz8bCTsWv+r3l5OtYjyBY6aT6kpWs7JTs3cPgEO2ZhFNuuShmdDNLqmQM6IKJqGO09t3/Dup/PQjV9IbCgo0Xsnnj95iHs7vNzFmeME39BGcPME7LV/fLxC2imGLCGYzGNRhy0WPsPNMw1RvNxVDMT79HyKQxB/hX7KqHZAY8BaH9dtHubIgGnnn2QppagTV05+n86V1xF980gjTxWBB2K3OT2qDS1oV3lPdDASdGrKhUR4bdAlqd3Ziq/eOLnaXH2zH/focsNM3go2xm17g8esKxDmYCObmH5Lr3pAxYj5byPFGmfNCwSr98eXzaeVO/25lPqeLpqy0ujg=

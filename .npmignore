@@ -1,0 +1,9 @@
+node_modules
+scripts
+test
+.travis.yml
+.babelrc
+testIndex.js
+.eslintrc.js
+tenon.js
+index.js
