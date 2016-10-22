@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- '6.5'
+before_install:
+  - npm update -g npm
+  - npm install -g grunt-cli
+  - npm install -g bower
+  - bower install
+before_script:
+  - grunt
