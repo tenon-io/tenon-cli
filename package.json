@@ -7,15 +7,15 @@
   },
   "main": "./bin",
   "bin": {
-    "tenon": "bin/tenon.js"
+    "tenon-cli": "bin/tenon-cli.js"
   },
   "files": [
     "bin"
   ],
   "scripts": {
-    "compile": "babel --presets es2015,stage-0 -d bin/ tenon.js index.js",
+    "compile": "babel --presets es2015,stage-0 -d bin/ tenon-cli.js index.js",
     "test": "mocha --compilers js:babel-core/register test/",
-    "lint": "eslint tenon.js"
+    "lint": "eslint tenon-cli.js"
   },
   "directories": {
     "test": "test"
