@@ -13,7 +13,7 @@ Install the dependencies and devDependencies and start the server.
 
 ```sh
 $ npm install tenon-cli -g
-$ tenon --key=XXXXXXXX --config=config.json https://example.com
+$ tenon-cli --key=XXXXXXXX --config=config.json https://example.com
 ```
 
 ### Development
