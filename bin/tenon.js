@@ -53,7 +53,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   var allOptions = Object.assign({}, configuration, program.commands[0]);
 
   // Defaults, can't do this in index.js because of the config.js file
-  // There is no way to differenciate between default and user entered which is the problem
+  // There is no way to differentiate between default and user entered which is the problem
   var defaults = {
     "endpoint": 'https://tenon.io/api/',
     "format": 'json'

@@ -6,6 +6,12 @@
     "node": ">=4"
   },
   "main": "./bin",
+  "bin": {
+    "tenon": "bin/tenon.js"
+  },
+  "files": [
+    "bin"
+  ],
   "scripts": {
     "compile": "babel --presets es2015,stage-0 -d bin/ tenon.js index.js",
     "test": "mocha --compilers js:babel-core/register test/",
@@ -37,15 +43,12 @@
     "eslint": "~3.7.1",
     "eslint-config-airbnb": "~12.0.0",
     "eslint-loader": "1.5.0",
-    "eslint-plugin-import": "~1.16.0",
+    "eslint-plugin-import": "~2.0.1",
     "eslint-plugin-jsx-a11y": "~2.2.3",
     "eslint-plugin-mocha": "~4.6.0",
     "eslint-plugin-node": "~2.1.2",
     "eslint-plugin-react": "~6.4.1",
     "mocha": "^3.0.2"
-  },
-  "bin": {
-    "tenon": "bin/tenon.js"
   },
   "keywords": [
     "tenon",
