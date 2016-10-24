@@ -24,7 +24,7 @@
     "commander": "^2.9.0",
     "get-stdin": "^5.0.1",
     "tenon-node": "^0.4.0",
-    "tenon-reporters": "~0.1.1"
+    "tenon-reporters": "github:elvanja/tenon-reporters#global-install-fix"
   },
   "license": "ISC",
   "author": "Tenon <deployments@tenon.io>",
