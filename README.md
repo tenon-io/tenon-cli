@@ -9,12 +9,44 @@ This CLI was made to interact with the Tenon.io API. It utilizes Node and Comman
 
 Tenon CLI requires [Node.js](https://nodejs.org/) v4+ to run.
 
-Install the dependencies and devDependencies and start the server.
+Install it as global package:
 
 ```sh
 $ npm install tenon-cli -g
+```
+
+### Usage
+
+First, register at [https://tenon.io](https://tenon.io) and acquire the API key.
+
+Basic usage:
+
+```sh
+$ tenon-cli --key=XXXXXXXX https://example.com
+```
+
+This will return JSON formatted test results for the given URL.
+
+If you need more control, you can supply a config.json file and supply it like this:
+
+```sh
 $ tenon-cli --key=XXXXXXXX --config=config.json https://example.com
 ```
+
+A sample config file:
+
+```json
+{
+  "out": "test-results.html",
+  "format": "html",
+  "waitFor": 1000
+}
+```
+
+You can supply the results file, format you require and various other parameters.
+
+You can find all the available formats in https://github.com/tenon-io/tenon-reporters readme. 
+
 
 ### Development
 
