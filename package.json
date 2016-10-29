@@ -6,10 +6,16 @@
     "node": ">=4"
   },
   "main": "./bin",
+  "bin": {
+    "tenon-cli": "bin/tenon-cli.js"
+  },
+  "files": [
+    "bin"
+  ],
   "scripts": {
-    "compile": "babel --presets es2015,stage-0 -d bin/ tenon.js index.js",
+    "compile": "babel --presets es2015,stage-0 -d bin/ tenon-cli.js index.js",
     "test": "mocha --compilers js:babel-core/register test/",
-    "lint": "eslint tenon.js"
+    "lint": "eslint tenon-cli.js"
   },
   "directories": {
     "test": "test"
@@ -18,7 +24,7 @@
     "commander": "^2.9.0",
     "get-stdin": "^5.0.1",
     "tenon-node": "^0.4.0",
-    "tenon-reporters": "~0.1.1"
+    "tenon-reporters": "^0.1.3"
   },
   "license": "ISC",
   "author": "Tenon <deployments@tenon.io>",
@@ -43,9 +49,6 @@
     "eslint-plugin-node": "~2.1.2",
     "eslint-plugin-react": "~6.4.1",
     "mocha": "^3.0.2"
-  },
-  "bin": {
-    "tenon": "bin/tenon.js"
   },
   "keywords": [
     "tenon",

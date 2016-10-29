@@ -55,8 +55,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   // Defaults, can't do this in index.js because of the config.js file
   // There is no way to differenciate between default and user entered which is the problem
   var defaults = {
-    "endpoint": 'https://tenon.io/api/',
-    "format": 'json'
+    endpoint: 'https://tenon.io/api/',
+    format: 'json'
   };
 
   Object.keys(defaults).forEach(function (key) {
@@ -154,7 +154,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     switch (allOptions.format) {
       case 'json':
         // Tenon returns resuls in JSON, so it's already formatted correctly
-        return new Promise(function (resolve, reject) {
+        return new Promise(function (resolve) {
           resolve(JSON.stringify(json, null, '\t'));
         });
       case 'csv':
