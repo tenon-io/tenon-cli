@@ -8,6 +8,7 @@ git:
 before_install:
 - npm config set spin false
 install:
+- npm install -g bower
 - npm install
 before_script:
 - npm run compile
