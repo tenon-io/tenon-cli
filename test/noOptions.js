@@ -1,6 +1,6 @@
 'use strict';
 
-const { parseCommand } = require('../testIndex');
+const { parseCommand } = require('../index');
 import assert from 'assert';
 
 describe('No options', function() {

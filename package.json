@@ -5,14 +5,14 @@
   "engines": {
     "node": ">=4"
   },
-  "main": "./bin",
+  "main": "bin",
   "scripts": {
     "compile": "babel --presets es2015,stage-0 -d bin/ tenon.js index.js",
     "test": "mocha --compilers js:babel-core/register test/",
     "lint": "eslint tenon.js"
   },
   "directories": {
-    "test": "test"
+    "bin": "bin"
   },
   "dependencies": {
     "commander": "^2.9.0",
@@ -59,10 +59,8 @@
     "cli",
     "testing"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tenon-io/tenon-cli.git"
-  },
+  "preferGlobal": "true",
+  "repository": "tenon-io/tenon-cli",
   "bugs": {
     "url": "https://github.com/tenon-io/tenon-cli/issues"
   },

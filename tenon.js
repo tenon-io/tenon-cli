@@ -221,4 +221,3 @@ getStdin().then(pipedHTML => {
     }
   });
 });
-
