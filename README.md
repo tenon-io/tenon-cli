@@ -45,7 +45,7 @@ A sample config file:
 
 You can supply the results file, format you require and various other parameters.
 
-You can find all the available formats in https://github.com/tenon-io/tenon-reporters readme. 
+You can find all the available formats in https://github.com/poorgeek/tenon-reporters readme. 
 
 
 ### Development
