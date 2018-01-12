@@ -22,6 +22,12 @@ script:
 - nvm install 6
 - nvm use 6
 - npm test
+- nvm install 8
+- nvm use 8
+- npm test
+- nvm install 9
+- nvm use 9
+- npm test
 - npm i npm -g
 after_success:
 - git config credential.helper "store --file=.git/credentials"
