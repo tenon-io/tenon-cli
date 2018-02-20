@@ -12,7 +12,7 @@ describe('Valid short form options', function() {
       '-e', 'http://example.com/api',
       '-i', 'test.html',
       '-o', 'testOut.html',
-      '-C', 'testConfig.json',
+      '--config', 'testConfig.json',
       '-f', 'html',
       '-w', '3000',
       '-l', 'AAA',
@@ -29,23 +29,22 @@ describe('Valid short form options', function() {
     ];
     const program = parseCommand(args);
     // Values are stored here based on Commander.js
-    const objectWithArgs = program.commands[0].parent;
-    assert.equal(objectWithArgs.key, 'XXXXX');
-    assert.equal(objectWithArgs.endpoint, 'http://example.com/api');
-    assert.equal(objectWithArgs.in, 'test.html');
-    assert.equal(objectWithArgs.out, 'testOut.html');
-    assert.equal(objectWithArgs.config, 'testConfig.json');
-    assert.equal(objectWithArgs.format, 'html');
-    assert.equal(objectWithArgs.waitFor, 3000);
-    assert.equal(objectWithArgs.level, 'AAA');
-    assert.equal(objectWithArgs.importance, 20);
-    assert.equal(objectWithArgs.priority, 20);
-    assert.equal(objectWithArgs.store, true);
-    assert.equal(objectWithArgs.docId, 'Jke2kdk3');
-    assert.equal(objectWithArgs.fragment, 1);
-    assert.equal(objectWithArgs.projectId, '23A');
-    assert.equal(objectWithArgs.userAgent, 'google-chrome');
-    assert.equal(objectWithArgs.viewPortWidth, 100);
-    assert.equal(objectWithArgs.viewPortHeight, 300);
+    assert.equal(program.key, 'XXXXX');
+    assert.equal(program.endpoint, 'http://example.com/api');
+    assert.equal(program.in, 'test.html');
+    assert.equal(program.out, 'testOut.html');
+    assert.equal(program.config, 'testConfig.json');
+    assert.equal(program.format, 'html');
+    assert.equal(program.waitFor, 3000);
+    assert.equal(program.level, 'AAA');
+    assert.equal(program.importance, 20);
+    assert.equal(program.priority, 20);
+    assert.equal(program.store, true);
+    assert.equal(program.docId, 'Jke2kdk3');
+    assert.equal(program.fragment, 1);
+    assert.equal(program.projectId, '23A');
+    assert.equal(program.userAgent, 'google-chrome');
+    assert.equal(program.viewPortWidth, 100);
+    assert.equal(program.viewPortHeight, 300);
   });
 });

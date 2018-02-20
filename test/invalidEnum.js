@@ -12,8 +12,7 @@ describe('Enum option with invalid value', function() {
       'http://example.com'
     ];
     const program = parseCommand(args);
-    // Values are stored here based on Commander.js
-    const objectWithArgs = program.commands[0].parent;
-    assert.equal(objectWithArgs.certainty, true);
+    assert.equal(true, program.certainty);
+    assert.equal(program.certainty, true);
   });
 });

@@ -12,7 +12,9 @@ describe('Required options without value', function() {
       'http://example.com'
     ];
     const program = parseCommand(args);
+
     // Values are stored here based on Commander.js
-    const objectWithArgs = program.commands[0].parent;
+    assert.equal(0, program.args.length);
+    assert.equal('http://example.com', program.key);
   });
 });

@@ -1,6 +1,9 @@
-import program from 'commander';
+const decache = require('decache');
 
 export const parseCommand = function(passedArguments) {
+  decache('commander');
+  const program = require('commander');
+
   program
   .description('A CLI for the Tenon Node')
   .option(
@@ -69,4 +72,23 @@ export const parseCommand = function(passedArguments) {
 
   return program;
 
+};
+
+
+export const filteredOptions = function(program) {
+  return Object.keys(program).filter(function(opt) {
+    return [ 'commands',
+      'options',
+      '_execs',
+      '_allowUnknownOption',
+      '_args',
+      '_name',
+      'Command',
+      'Option',
+      '_description',
+      '_events',
+      '_eventsCount',
+      'rawArgs',
+      'args'].indexOf(opt) === -1;
+  });
 };
