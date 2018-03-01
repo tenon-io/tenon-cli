@@ -68,7 +68,7 @@ getStdin().then(pipedHTML => {
     docId: 'docID',
     fragment: 'fragment',
     projectId: 'projectID',
-    userAgent: 'UAString',
+    userAgent: 'uaString',
     viewPortHeight: 'viewPortHeight',
     viewPortWidth: 'viewPortWidth',
   };

@@ -80,7 +80,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     docId: 'docID',
     fragment: 'fragment',
     projectId: 'projectID',
-    userAgent: 'UAString',
+    userAgent: 'uaString',
     viewPortHeight: 'viewPortHeight',
     viewPortWidth: 'viewPortWidth'
   };
@@ -137,7 +137,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   // Initialize the Tenon API object
   var tenonApi = new _tenonNode2.default({
     key: allOptions.key,
-    endPoint: allOptions.endpoint });
+    endPoint: allOptions.endpoint // or your private tenon instance
+  });
 
   var writeResultFile = function writeResultFile(result, file) {
     try {
