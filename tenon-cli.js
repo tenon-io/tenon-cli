@@ -44,7 +44,7 @@ getStdin().then(pipedHTML => {
   // There is no way to differenciate between default and user entered which is the problem
   const defaults = {
     endpoint: 'https://tenon.io/api/',
-    format: 'json',
+    format: 'json'
   };
 
   Object.keys(defaults).forEach((key) => {
@@ -70,7 +70,7 @@ getStdin().then(pipedHTML => {
     projectId: 'projectID',
     userAgent: 'uaString',
     viewPortHeight: 'viewPortHeight',
-    viewPortWidth: 'viewPortWidth',
+    viewPortWidth: 'viewPortWidth'
   };
 
   const options = {};
@@ -125,7 +125,7 @@ getStdin().then(pipedHTML => {
   // Initialize the Tenon API object
   const tenonApi = new tenonNode({
     key: allOptions.key,
-    endPoint: allOptions.endpoint, // or your private tenon instance
+    endPoint: allOptions.endpoint // or your private tenon instance
   });
 
   const writeResultFile = (result, file) => {
