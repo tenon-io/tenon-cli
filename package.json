@@ -13,7 +13,7 @@
     "bin"
   ],
   "scripts": {
-    "compile": "babel --presets es2015,stage-0 -d bin/ tenon-cli.js index.js",
+    "compile": "babel -d bin/ tenon-cli.js index.js",
     "test": "mocha --compilers js:babel-core/register test/",
     "lint": "eslint tenon-cli.js"
   },
@@ -43,7 +43,7 @@
     "chai": "^3.5.0",
     "eslint": "~3.7.1",
     "eslint-config-airbnb": "~12.0.0",
-    "eslint-loader": "1.5.0",
+    "eslint-loader": "1.9.0",
     "eslint-plugin-import": "~2.0.1",
     "eslint-plugin-jsx-a11y": "~2.2.3",
     "eslint-plugin-mocha": "~4.6.0",

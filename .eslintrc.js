@@ -21,6 +21,9 @@ module.exports = {
     },
     // http://eslint.org/docs/rules/
     "rules": {
+        "node/no-unsupported-features": 0,
+        "node/shebang": 0,
+
         // Possible Errors,
         "comma-dangle": [2, "never"],
         "no-cond-assign": 2,
@@ -54,7 +57,7 @@ module.exports = {
         // Best Practices,
         "accessor-pairs": 2,
         "block-scoped-var": 0,
-        "complexity": [2, 6],
+        "complexity": [2, 9],
         "consistent-return": 0,
         "curly": 0,
         "default-case": 0,
@@ -67,7 +70,7 @@ module.exports = {
         "no-case-declarations": 2,
         "no-div-regex": 2,
         "no-else-return": 0,
-        "no-empty-label": 2,
+        "no-labels": 2,
         "no-empty-pattern": 2,
         "no-eq-null": 2,
         "no-eval": 2,
@@ -132,7 +135,7 @@ module.exports = {
         "no-mixed-requires": 0,
         "no-new-require": 0,
         "no-path-concat": 2,
-        "no-process-exit": 2,
+        "no-process-exit": 0,
         "no-restricted-modules": 0,
         "no-sync": 0,
 
@@ -159,7 +162,7 @@ module.exports = {
         "max-len": 0,
         "max-nested-callbacks": 0,
         "max-params": 0,
-        "max-statements": [2, 30],
+        "max-statements": [2, 40],
         "new-cap": 0,
         "new-parens": 0,
         "newline-after-var": 0,
