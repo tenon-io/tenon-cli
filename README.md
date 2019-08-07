@@ -45,7 +45,7 @@ A sample config file:
 
 You can supply the results file, format you require and various other parameters.
 
-You can find all the available formats in https://github.com/poorgeek/tenon-reporters readme. 
+You can find all the available formats in https://github.com/poorgeek/tenon-reporters readme.
 
 
 ### Development
@@ -72,7 +72,9 @@ $ npm install -g
 ```sh
 $ karma start
 ```
+
 #### Testing
+
 Tests automatically utilize babel and ES6 standards, to run tests just enter (from the project root directory):
 ```
 $ npm run test
